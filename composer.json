@@ -1,0 +1,26 @@
+{
+    "name": "academixpro/cursos",
+    "description": "plataforma de cursos",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "sistema\\": "sistema/"
+        },
+        "files": [
+            
+        ]
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "pecee/simple-router": "dev-master",
+        "twig/twig": "3.9.3",
+        "slim/http": "dev-master",
+        "slim/slim": "4.x-dev",
+        "slim/psr7": "dev-master",
+        "symfony/asset": "7.1.x-dev",
+        "symfony/webpack-encore-bundle": "2.x-dev",
+        "symfony/ux-turbo": "2.x-dev",
+        "symfony/stimulus-bundle": "2.x-dev",
+        "coffeecode/router": "dev-master"
+    }
+}

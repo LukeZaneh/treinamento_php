@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    box-sizing: border-box;
+}
+
+h3{
+    margin-bottom: 5px;
+    padding-left: 15px;
+}
+
+p{
+    margin-bottom: 5px;
+    padding-left: 15px;
+}
+
+
+.container-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-color: #232a31;
+    padding: 0px 10px 0px 10px;
+}
+
+.voltar a{
+    text-decoration: none;
+    color: white;
+}
+
+.voltar{
+    display: flex;
+    font-size: 30px;
+}
+
+.nova-aula{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.nova-aula p{
+    font-size: 20px;
+}
+
+.nova-aula i{
+    font-size: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container-main{
+    width: 100%;
+    position: relative;
+    padding: 20px 0px 0px 10px;
+}
+
+.aula{
+    display: flex;
+}
+
+.capa{
+    width: 30%;
+}
+
+#img{
+    width: 400px;
+}
+
+.descricao{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    width: 40%;
+    height: 310px;
+    margin-left: 20px;
+}
+
+.descricao a{
+    text-decoration: none;
+    color: black;
+}
+
+
+.opcoes{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 40px;
+    padding-left: 35px;
+    padding-right: 35px; 
+}
+
+.opcoes a{
+    text-decoration: none;
+    color: black;
+}
+
+.icon-opcoes{
+    font-size: 45px;
+}
+
+
