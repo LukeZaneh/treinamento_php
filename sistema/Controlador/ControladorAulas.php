@@ -3,12 +3,11 @@
 namespace sistema\Controlador;
 use sistema\Nucleo\Controlador;
 use sistema\Modelo\Aula;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-
+use Pecee\Http\Response;
+use Pecee\SimpleRouter\SimpleRouter;
 
 class ControladorAulas extends Controlador
-{
+{ 
     public function __construct()
     {
         parent::__construct('sistema/templates/site/views');
@@ -25,29 +24,59 @@ class ControladorAulas extends Controlador
     public function novaAula()
     {
        
-        $categorias = (new Aula())->buscarCategorias();
-        echo $this->template->renderizar('novaaula.html', [
-            'categorias'=>$categorias,
-            'eu' => "oi"
-        ]);
     }
 
     public function cadastrarAula()
     {
-        $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if(isset($dados)){
-            // $titulo = $_POST['titulo'];
-            // $descricao = $_POST['descricao'];
-            // $url = $_POST['url'];
-            // $link = $_POST['link'];
-            // $duracao = $_POST['duracao'];
-            // $categoria = $_POST['categoria'];
-            (new Aula())->cadastrarAula($dados);
+        $objetoAula = new Aula();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') { 
+            $categorias = $objetoAula->buscarCategorias();
+            echo $this->template->renderizar('novaaula.html', [
+                'categorias'=>$categorias,
+            ]);
         }
-        
-        echo $this->template->renderizar('index.html', [
-        ]);
+        elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            if(isset($dados)){
+                $objetoAula->cadastrarAula($dados);
+                $categoria = $dados['categoria'];
+                //SimpleRouter::response()->redirect("http://localhost/cursos/aulas/{$categoria}");
+            }
+            SimpleRouter::response()->redirect("http://localhost/cursos/aulas/{$categoria}");
+        }
     }
 
+
+    public function editarAula($id){
+        $objetoAula = new Aula();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $aula = $objetoAula->buscaPorId($id);
+            $categorias = $objetoAula->buscarCategorias();
+            
+            echo $this->template->renderizar('editaraula.html', [
+                'aula'=>$aula[0],
+                'categorias'=>$categorias
+            ]);
+        }
+        elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            if(isset($dados)){
+                $objetoAula->editarAula($dados, $id);
+                $categoria = $dados['categoria'];
+            }
+            SimpleRouter::response()->redirect("http://localhost/cursos/aulas/{$categoria}");
+        }
+    }
+
+    public function deletarAula($id){
+        $objetoAula = new Aula();
+        
+        $aula = $objetoAula->buscaPorId($id);
+        $categoria = $aula[0]->categoria;
+        var_dump($categoria);
+        $objetoAula->deletar($id);
+        SimpleRouter::response()->redirect("http://localhost/cursos/aulas/{$categoria}");
+        
+    }
 
 }

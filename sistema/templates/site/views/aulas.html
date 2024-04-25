@@ -4,7 +4,7 @@
    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu titulo</title>
+    <title>Aulas</title>
     <!-- <link rel="stylesheet" href="cursos/sistema/templates/assets/css/style.css"> -->
     <link 
     rel="stylesheet" 
@@ -19,12 +19,12 @@
 <body>
     <main>
         <div class="bg-black">
-          <header class="d-flex flex-wrap justify-content-between py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center ms-3  link-opacity-75-hover text-decoration-none fs-1 text-light">
+          <header class="d-flex flex-wrap justify-content-end py-3 mb-4 border-bottom">
+            <!-- <a href="/" class="d-flex align-items-center ms-3  link-opacity-75-hover text-decoration-none fs-1 text-light">
                 <i class='far fa-arrow-alt-circle-left' id="icon"></i>
-            </a>
+            </a> -->
       
-            <a class="text-decoration-none d-flex align-items-center me-3" href="http://localhost/cursos/admin/nova">
+            <a class="text-decoration-none d-flex align-items-center me-3" href="http://localhost/cursos/admin/cadastrar">
                 <p class="mb-0 fs-4 me-2">Nova aula</p>
                 <i class="fas fa-plus-square fs-1"></i>
             </a>
@@ -53,10 +53,10 @@
                 <p>Duração: {{aula.duracao}}</p>
             </div>
             <div class="w-50 d-flex justify-content-around " style="height: 100px;">
-                <a class="text-dark text-decoration-none" href="#">
+                <a class="text-dark text-decoration-none" href="http://localhost/cursos/admin/editar/{{aula.id}}">
                     <i class="fas fa-edit fs-1 pb-3"></i>
                 </a>
-                <a class="text-dark text-decoration-none" href="#">
+                <a class="text-dark text-decoration-none" href="http://localhost/cursos/admin/deletar/{{aula.id}}">
                     <i class="fas fa-trash fs-1"></i>
                 </a>
             </div>

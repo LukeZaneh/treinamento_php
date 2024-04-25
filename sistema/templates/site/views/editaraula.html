@@ -4,7 +4,7 @@
    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova aula</title>
+    <title>Editar aula</title>
     <!-- <link rel="stylesheet" href="cursos/sistema/templates/assets/css/style.css"> -->
     <link 
     rel="stylesheet" 
@@ -19,33 +19,38 @@
 <body>
     <div class="container w-50">
         <h2 class="text-center mt-4 border border-dark border-bottom-0">Novo Aula</h2>
-        <form method="POST" action="http://localhost/cursos/admin/cadastrar">
+        <form method="POST" action="http://localhost/cursos/admin/editar/{{aula.id}}">
+            <!-- <input type="text" name="id" value="{{aula.id}}" hidden> -->
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Título</span>
                 </div>
-                <input class="form-control" type="text" name="titulo" placeholder="Defina o título do artigo">
+                <input class="form-control" type="text" name="titulo" value="{{aula.titulo}}">
             </div>
             <label>Descrição</label>
-            <textarea class="form-control mb-2" id="article" name="descricao" placeholder="Descrição"></textarea>
+            <textarea class="form-control mb-2" id="article" name="descricao">{{aula.descricao}}</textarea>
             <label>Url</label>
-            <textarea class="form-control mb-2" id="article" name="url" placeholder="..."></textarea>
+            <textarea class="form-control mb-2" id="article" name="url">{{aula.url}}</textarea>
             <label>Link</label>
-            <textarea class="form-control mb-2" id="article" name="link" placeholder="..."></textarea>
+            <textarea class="form-control mb-2" id="article" name="link">{{aula.link}}</textarea>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Duração</span>
                 </div>
-                <input class="form-control" type="text" name="duracao" placeholder="Diga a duração do vídeo">
+                <input class="form-control" type="text" name="duracao" value="{{aula.duracao}}">
             </div>
             <label>Categoria</label>
             <select class="form-control mb-2" name="categoria">
                 {% for categoria in categorias%}
-                    <option value="{{categoria.id}}">{{categoria.titulo}}</option>
+                    {% if aula.categoria == categoria.id%}
+                        <option value="{{categoria.id}}" selected>{{categoria.titulo}}</option>
+                    {% else %}
+                        <option value="{{categoria.id}}">{{categoria.titulo}}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
             <div class="d-flex justify-content-center mb-3">
-                <button class="btn btn-dark">Cadastrar</button>
+                <button class="btn btn-dark">editar</button>
             </div>
         </form>
     </div>
