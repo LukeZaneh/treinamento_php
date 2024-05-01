@@ -12,6 +12,7 @@ class ControladorSite extends Controlador
     {
         echo 'Página inicial';
     }
+
     public function aulas():void
     {
         echo $this->template->renderizar('aulas.html', [
