@@ -24,7 +24,7 @@
                 <i class='far fa-arrow-alt-circle-left' id="icon"></i>
             </a> -->
       
-            <a class="text-decoration-none d-flex align-items-center me-3" href="http://localhost/cursos/admin/cadastrar">
+            <a class="text-decoration-none d-flex align-items-center me-3" href="http://localhost/cursos/admin/cadastrar/categoria/">
                 <p class="mb-0 fs-4 me-2">Nova categoria</p>
                 <i class="fas fa-plus-square fs-1"></i>
             </a>
@@ -38,11 +38,16 @@
         {% for categoria in categorias %}
         <!-- {{aula.url}} -->
         <div class="d-flex justify-content-start align-items-center ms-3" style="margin-bottom: 50px;">
+            <div class="w-50 ms-2">
+                <a class="text-dark text-decoration-none" href="http://localhost/cursos/aulas/{{categoria.id}}">
+                    <p>{{categoria.titulo}}</p>
+                </a>
+            </div>
             <div class="w-50 d-flex justify-content-around " style="height: 100px;">
-                <a class="text-dark text-decoration-none" href="http://localhost/cursos/admin/editar/{{categoria.id}}">
+                <a class="text-dark text-decoration-none" href="http://localhost/cursos/admin/categoria/editar/{{categoria.id}}">
                     <i class="fas fa-edit fs-1 pb-3"></i>
                 </a>
-                <a class="text-dark text-decoration-none" href="http://localhost/cursos/admin/deletar/{{categoria.id}}">
+                <a class="text-dark text-decoration-none" href="http://localhost/cursos/admin/categoria/deletar/{{categoria.id}}">
                     <i class="fas fa-trash fs-1"></i>
                 </a>
             </div>

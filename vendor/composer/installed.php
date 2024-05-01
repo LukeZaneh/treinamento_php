@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'academixpro/cursos',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'ff6848eda54a99a789f605b990e7f394a983eb06',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'academixpro/cursos' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'ff6848eda54a99a789f605b990e7f394a983eb06',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

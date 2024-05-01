@@ -4,7 +4,7 @@ namespace sistema\Modelo;
 
 use sistema\Nucleo\Conexao;
 
-class Aula
+class Categoria
 {
     private $conexao;
 
@@ -20,18 +20,36 @@ class Aula
         $query = "SELECT * FROM categorias WHERE id = {$id}";
         $stmt = $this->conexao->query($query);
         $resultado = $stmt->fetchAll();
+        // var_dump($resultado);
         return $resultado;
     }
 
-    public function cadastrarCategorias($dados)
+    public function cadastrarCategoria($dados)
     {
-        $query = "INSERT INTO categorias (titulo, id) VALUES (?,?)";
+        $query = "INSERT INTO categorias (titulo) VALUES (?)";
         $stmt = $this->conexao->prepare($query);
-        $stmt->execute([$dados['titulo'], $dados['id']]);
+        $stmt->execute([$dados['titulo']]);
+    }
+
+    public function buscarCategorias()
+    {
+        $query = "SELECT * FROM categorias";
+        $stmt = $this->conexao->query($query);
+        $resultado = $stmt->fetchAll();
+        return $resultado;
+    }
+
+    public function buscaPorTitulo($titulo)
+    {
+        // var_dump($titulo);
+        $query = "SELECT * FROM categorias WHERE titulo = '{$titulo}'";
+        $stmt = $this->conexao->query($query);
+        $resultado = $stmt->fetchAll();
+        return $resultado[0];
     }
 
     public function editarCategoria($dados ,$id){
-        $query = "UPDATE categorias SET titulo = :titulo, id = :id
+        $query = "UPDATE categorias SET titulo = :titulo
         WHERE id = {$id}";
         var_dump($dados);
         $stmt = $this->conexao->prepare($query);

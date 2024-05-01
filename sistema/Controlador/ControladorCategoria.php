@@ -12,6 +12,13 @@ class ControladorCategoria extends Controlador
         parent::__construct('sistema/templates/site/views');
     }
 
+    public function listaCategorias() {
+        $categorias = (new Categoria())->buscarCategorias();
+        echo $this->template->renderizar('categorias.html', [
+          'categorias'=>$categorias
+        ]);
+    }
+
     public function categorias($id)
     {
         $categorias = (new Categoria())->buscaPorId($id);
@@ -20,12 +27,12 @@ class ControladorCategoria extends Controlador
         ]);
     }
 
-    public function criarCategoria()
+    public function cadastrarCategoria()
     {
         $objetoCategoria = new Categoria();
         if ($_SERVER['REQUEST_METHOD'] === 'GET') { 
             $categorias = $objetoCategoria->buscarCategorias();
-            echo $this->template->renderizar('categorias.html', [
+            echo $this->template->renderizar('novacategoria.html', [
                 'categorias'=>$categorias,
             ]);
         }
@@ -33,10 +40,14 @@ class ControladorCategoria extends Controlador
             $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             if(isset($dados)){
                 $objetoCategoria->cadastrarCategoria($dados);
-                $categoria = $dados['categoria'];
+                $categoria = $objetoCategoria->buscaPorTitulo($dados['titulo']);
+                var_dump($categoria);
+                $categoria = (array) $categoria;
                 //SimpleRouter::response()->redirect("http://localhost/cursos/aulas/{$categoria}");
             }
-            SimpleRouter::response()->redirect("http://localhost/cursos/categorias/{$categoria}");
+            //echo $categoria;
+            $id = $categoria['id'];
+            SimpleRouter::response()->redirect("http://localhost/cursos/categorias/{$id}");
         }
     }
 
@@ -45,29 +56,27 @@ class ControladorCategoria extends Controlador
         $objetoCategoria = new Categoria();
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $categoria = $objetoCategoria->buscaPorId($id);
-            
+            // var_dump($categoria);
             echo $this->template->renderizar('editarcategoria.html', [
-                'categorias'=>$categoria
+                'categoria'=>(array)$categoria[0]
             ]);
         }
         elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
             $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             if(isset($dados)){
-                $objetoCategoria->$this->editarCategoria($dados, $id);
-                $categoria = $dados['categoria'];
+                $objetoCategoria->editarCategoria($dados, $id);
+                // var_dump($objetoCategoria);
+                $categoria = $dados['titulo'];
             }
-            SimpleRouter::response()->redirect("http://localhost/cursos/aulas/{$categoria}");
+            SimpleRouter::response()->redirect("http://localhost/cursos/categorias/{$id}");
         }
     }
 
     public function deletarCategoria($id){
         $objetoCategoria = new Categoria();
         
-        $categoria = $objetoCategoria->buscaPorId($id);
-        $categoria = $categoria[0]->categoria;
-        var_dump($categoria);
-        $objetoCategoria->$this->deletar($id);
-        SimpleRouter::response()->redirect("http://localhost/cursos/categorias/{$categoria}");
+        $objetoCategoria->deletar($id);
+        SimpleRouter::response()->redirect("http://localhost/cursos");
         
     }
 
